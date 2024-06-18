@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>K-Means Visualizer</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1 class="title is-3 has-text-centered pt-4">
+      K-Means Algorithm Visualizer
+    </h1>
+    <h3 class="subtitle is-5 has-text-centered">~Shamika Redkar</h3>
+
+    <!-- Settings icon for the first modal -->
+    <div class="settings-icon" title="Instructions">
+      <i class="fas fa-cog" id="settingsButton"></i>
+    </div>
+
+    <!-- Info icon for the second modal -->
+    <div class="info-icon" title="Algorithm Theory">
+      <i class="fas fa-info-circle" id="infoButton"></i>
+    </div>
+
+    <div id="kmeans">
+      <div id="span" class="center-content">
+        <span><svg class="rounded-corners"></svg></span>
+      </div>
+
+      <div class="center-content">
+        <div class="card mt-4 center-content">
+          <div class="card-content">
+            <div class="content">
+              <div class="field is-horizontal">
+                <div>
+                  <label class="label" for="N"
+                    >Enter the number of data points:</label
+                  >
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <div class="control ml-4">
+                      <input
+                        type="number"
+                        id="N"
+                        min="2"
+                        max="250"
+                        value="250"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="field is-horizontal">
+                <div>
+                  <label class="label" for="K"
+                    >Enter the number of clusters:</label
+                  >
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <div class="control ml-6">
+                      <input type="number" id="K" min="2" max="50" value="10" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button class="button is-primary is-dark mr-2" id="reset">
+                New
+              </button>
+              <button class="button is-link is-dark mr-2" id="start">
+                Start
+              </button>
+              <button class="button is-warning is-dark mr-2" id="restart">
+                Restart
+              </button>
+              <button class="button is-danger is-dark mr-2" id="stop">
+                Stop
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- First Modal -->
+    <div class="modal" id="infoModal">
+      <div class="modal-background"></div>
+      <div class="modal-card rounded-corners">
+        <section class="modal-card-body">
+          <h1 class="title is-3 has-text-centered">Instructions</h1>
+          <p>
+            K-means algorithm is an iterative algorithm that tries to partition
+            the dataset into K pre-defined distinct non-overlapping subgroups
+            (clusters) where each data point belongs to only one group. Read
+            more about K-means on
+            <a
+              target="_blank"
+              href="https://en.wikipedia.org/wiki/K-means_clustering"
+              >Wikipedia</a
+            >
+          </p>
+          <h3 class="title is-5 mt-4">How to run the Visualizer</h3>
+          <ol type="1" class="ml-4">
+            <li>Specify the number of data points and clusters points.</li>
+            <li>
+              Press the <span class="has-text-primary">New button</span> to
+              generate new data and clusters.
+            </li>
+            <li>
+              Press the <span class="has-text-link">Start button</span> to start
+              the visualizer.
+            </li>
+            <li>
+              Press <span class="has-text-warning">Restart button</span> to
+              start the visualization from beginning.
+            </li>
+
+            <li>
+              Press <span class="has-text-danger">Stop button</span> to stop the
+              visualizer.
+            </li>
+          </ol>
+          <button class="button is-black mt-4" id="cancelModalButton">
+            Let's go
+          </button>
+        </section>
+      </div>
+    </div>
+
+    <!-- Second Modal -->
+    <div class="modal" id="algorithmModal">
+      <div class="modal-background"></div>
+      <div class="modal-card rounded-corners">
+        <section class="modal-card-body">
+          <h1 class="title is-3 has-text-centered">
+            Understanding The Algorithm
+          </h1>
+
+          <!-- Breadcrumb navigation for the stages -->
+          <nav class="breadcrumb" aria-label="breadcrumbs">
+            <ul>
+              <li id="stage1" class="is-active">
+                <a href="#">Stage 1: Initialization</a>
+              </li>
+              <li id="stage2"><a href="#">Stage 2: Assignment</a></li>
+              <li id="stage3"><a href="#">Stage 3: Update</a></li>
+              <li id="stage4"><a href="#">Stage 4: Convergence</a></li>
+            </ul>
+          </nav>
+
+          <!-- Sections for each stage -->
+          <div id="stage1Content" class="stage-content ml-4">
+            <ol type="1">
+              <li>Centroid is the center of a cluster</li>
+              <li>Initially, the exact center of data points are unknown so</li>
+              <li>
+                So we select <u>random data points</u> and define them as
+                <u>centroids</u> for each cluster.
+              </li>
+            </ol>
+          </div>
+          <div id="stage2Content" class="stage-content is-hidden ml-4">
+            <ol type="1">
+              <li>
+                Now that the centroids are initialized, the next step is to
+                <u>assign data points</u> <u>X<sub>n</sub></u> to their closest
+                cluster <u>centroid</u> <u>C<sub>k</sub></u
+                >.
+              </li>
+              <li>
+                In this step, we will first calculate the distance between data
+                point
+                <u>X</u>
+                and centroid
+                <u>C</u>
+                using
+                <u>Euclidean Distance metric</u>.
+              </li>
+              <li>
+                And then choose the cluster for data points where the distance
+                between the data point and the centroid is <u>minimum</u>.
+              </li>
+            </ol>
+          </div>
+          <div id="stage3Content" class="stage-content is-hidden ml-4">
+            <ol type="1">
+              <li>
+                Next, we will re-initialize the centroids by calculating the
+                average of all data points of that cluster.
+              </li>
+              <li>
+                This means for each cluster, the
+                <u>new centroid</u>
+                is calculated by taking the average of all the data points
+                assigned to that cluster
+              </li>
+              <li>
+                The position of the centroid is updated to the newly calculated
+                mean position.
+              </li>
+            </ol>
+          </div>
+          <div id="stage4Content" class="stage-content is-hidden ml-4">
+            <ol type="1">
+              <li>
+                We will keep repeating stage 3 and 4 until we have
+                <u>optimal centroids</u>
+                and the
+                <u>assignments of data points</u>
+                to correct clusters are
+                <u>not changing anymore</u>.
+              </li>
+            </ol>
+          </div>
+
+          <button class="button is-black mt-4" id="closeAlgorithmModalButton">
+            Close
+          </button>
+        </section>
+      </div>
+    </div>
+
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="k-means.js"></script>
+    <script src="dom.js"></script>
+  </body>
+</html>

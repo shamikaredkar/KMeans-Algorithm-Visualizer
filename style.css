@@ -1,0 +1,132 @@
+/* CSS Reset */
+* {
+    height: 100;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #121212;
+        --box-background-color: #1e1e1e;
+        --text-color: #ffffff;
+        --input-background-color: #333333;
+        --input-text-color: #ffffff;
+        --button-background-color: #444444;
+        --button-text-color: #ffffff;
+        --modal-background-color: #2c2c2c;
+        --modal-text-color: #ffffff;
+        --modal-header-footer-background-color: #3e3e3e;
+    }
+        .center-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+    
+    .rounded-corners {
+        border-radius: 15px;
+        overflow: hidden;
+    }
+    
+
+    .subtitle {
+        color: var(--text-color);
+    }
+
+    body {
+        background-color: var(--background-color);
+        color: var(--text-color);
+    }
+
+    .title{
+        color: var(--text-color);
+    }
+
+    .card {
+        background-color: var(--box-background-color);
+        color: var(--text-color);
+            width: fit-content;
+            display: block;
+    }
+
+    .label {
+        color: var(--text-color);
+    }
+
+    .input {
+        background-color: var(--input-background-color);
+        color: var(--input-text-color);
+        border: none;
+    }
+
+    .button {
+        background-color: var(--button-background-color);
+        color: var(--button-text-color);
+        border: none;
+    }
+
+    .button:hover {
+        background-color: var(--button-background-color);
+        color: var(--button-text-color);
+    }
+
+    .modal-card {
+        background-color: var(--modal-background-color);
+        color: var(--modal-text-color);
+    }
+
+    .modal-card-head,
+    .modal-card-foot {
+        background-color: var(--modal-header-footer-background-color);
+        color: var(--modal-text-color);
+    }
+
+    .modal-card-title {
+        color: var(--text-color);
+    }
+
+    .modal-card-body {
+        color: var(--text-color);
+        background-color: var(--modal-background-color);
+    }
+
+    .modal-background {
+        background-color: rgba(18, 18, 18, 0.7);
+    }
+
+    p,
+    ol,
+    ul {
+        color: var(--text-color);
+    }
+.settings-icon {
+    position: absolute;
+    top: 20px;
+    left: 60px;
+    cursor: pointer;
+    font-size: 24px;
+    color: #fff;
+    /* Adjust color as needed */
+}
+
+.info-icon {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    font-size: 24px;
+    color: #fff;
+    /* Adjust color as needed */
+}
+
+}
