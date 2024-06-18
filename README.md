@@ -1,6 +1,6 @@
 # KMeans-Algorithm-Visualizer
 
-![K-Means Visualizer](https://github.com/shamikaredkar/K-Means-Visualizer/blob/main/image.png)
+![K-Means Visualizer](https://github.com/shamikaredkar/KMeans-Algorithm-Visualizer/blob/main/KMeans-Preview.png)
 
 ## Purpose
 The K-Means Visualizer is a web application that helps users understand and visualize the K-Means clustering algorithm. It provides an interactive platform to experiment with different numbers of data points and clusters, visualizing how the algorithm iteratively updates centroids and assigns data points to clusters.
@@ -64,10 +64,4 @@ The JavaScript files include the following main functions:
 - `make()`: Updates the SVG elements to reflect the current state of the data points and centroids. It updates the positions and colors of the data points and centroids, and draws lines between data points and their assigned centroids.
 - `moveCentroid()`: Calculates the new positions of the centroids based on the average of the assigned data points.
 - `updateGroups()`: Assigns each data point to the nearest centroid by calculating the Euclidean distance between each data point and each centroid.
-
-## Contributing
-If you'd like to contribute to this project, please fork the repository and use a feature branch. Pull requests are warmly welcome.
-
-## License
-This project is licensed under the MIT License.
 
